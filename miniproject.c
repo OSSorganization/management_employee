@@ -10,11 +10,11 @@ typedef struct{
     int rest_hour, rest_minute;
 } Employee;
 
-int create_emp(Employee *a);             // 함수명 수정, 앞으로 함수명 수정해야 하는 부분은 // -으로 표시
-void read_emp(Employee a);              // -
-void update_emp(Employee *a);             // -
-int delete_emp(Employee *a);             // -
-void list_emp(Employee *a,int count);    // -
+int createProduct(Employee *a);            
+void readProduct(Employee a);             
+void updateProduct(Employee *a);           
+int deleteProduct(Employee *a);             
+void listProduct(Employee *a,int count);    
 void saveData(Employee *a, int count);
 int loadData(Employee *a);
 int selectMenu();
@@ -23,9 +23,9 @@ void showInTime(Employee *e, int count);
 void showOutTime(Employee *e, int count);
 void searchTime(Employee *e, int count);
 void calculateDailyWage(Employee *e, int count);
-int create_emp(Employee *a);
 
-int create_emp(Employee *a){
+
+int createProduct(Employee *a){
     char name[100] ;
 
     printf("날짜입력 ex) 7월5일 -> 7/5\n");
@@ -45,7 +45,7 @@ int create_emp(Employee *a){
     return 1;
 }
 
-void read_emp(Employee a){
+void readProduct(Employee a){
 
     printf("\n%d월%d일\n", a.month, a.day);
     printf("이름: %s\n", a.name);
@@ -55,24 +55,24 @@ void read_emp(Employee a){
 
 }
 
-void list_emp(Employee* a, int count){
+void listProduct(Employee* a, int count){
     for(int i=0; i<count; i++){
         if(a[i].month ==0) continue;
-        printf("%d번\n, i+1");
-        read_emp(a[i]);
+        printf("%d번\n", i+1);
+        readProduct(a[i]);
         printf("\n");
     }
 }
 
-int selectDataNO(Employee* a, int count){
+int selectDataNo(Employee* a, int count){
     int no =0;
-    list_emp(a, count);
+    listProduct(a, count);
     printf("번호는? (취소:0)");
     scanf("%d", &no);
     return no;
 }
 
-void update_emp(Employee* a){
+void updateProduct(Employee* a){
 
     printf("날짜입력 ex) 7월5일 -> 7/5\n");
     printf("날짜: ");
@@ -90,7 +90,7 @@ void update_emp(Employee* a){
     
 }
 
-int delete_emp(Employee *a){
+int deleteProduct(Employee *a){
     a->month = 0;
 }
 
@@ -99,17 +99,42 @@ void saveData(Employee *a, int count){
     fp = fopen("employee.txt", "wt");
 
     for(int i=0; i<count ; i++){
-        if(a[i]->month ==0) continue;
-        fprintf(fp, "%s ", a[i]->name);
-        fprintf(fp, "%d %d ", a[i]->month, a[i]->day);
-        fprintf(fp, "%d %d ", a[i]->in_hour, a[i]->in_minutes);
-        fprintf(fp, "%d %d ", a[i]->out_hour, a[i]->out_minute);
-        fprintf(fp, "%d %d\n", a[i]->rest_hour, a[i]->rest_minute);
+        if(a[i].month ==0) continue;
+        fprintf(fp, "%s ", a[i].name);
+        fprintf(fp, "%d %d ", a[i].month, a[i].day);
+        fprintf(fp, "%d %d ", a[i].in_hour, a[i].in_minute);
+        fprintf(fp, "%d %d ", a[i].out_hour, a[i].out_minute);
+        fprintf(fp, "%d %d\n", a[i].rest_hour, a[i].rest_minute);
     }
 
     fclose(fp);
     printf("저장됨\n");
-    
+}
+
+int loadData(Employee *a){
+    int count=0;
+
+    FILE *fp;
+    fp = fopen("employee.txt", "rt");
+
+    if(fp == NULL){
+        printf("파일 없음\n");
+        return count;
+    }
+
+    for(int i=0; i<100; i++){
+        if(feof(fp)) break;
+        fscanf(fp, "%s ", a[i].name);
+        fscanf(fp, "%d %d ", &a[i].month, &a[i].day);
+        fscanf(fp, "%d %d ", &a[i].in_hour, &a[i].in_minute);
+        fscanf(fp, "%d %d ", &a[i].out_hour, &a[i].out_minute);
+        fscanf(fp, "%d %d\n", &a[i].rest_hour, &a[i].rest_minute);
+        count++;
+    }
+    fclose(fp);
+    printf("로딩 성공!\n");
+    return count;
+
 }
 
 
@@ -143,7 +168,7 @@ void searchTime(Employee *e, int count){
     for(int i = 0; i<count; i++){
         if(e[i].month == -1) continue;
         if(strstr(e[i].name, search)){
-            readProduct(&e[i]);
+            readProduct(e[i]);
             scnt++;
         }
     }
@@ -219,81 +244,6 @@ int selectMenu(){
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
     return menu;
-}
-
-// 함수 구현 임의로
-int createProduct(Employee *p){
-    printf("\n");
-    printf("직원 이름 : ");
-    scanf("%s",p->name);
-
-    printf("출근 시간 - 시 : ");
-    scanf("%d",&p->in_hour);
-
-    printf("출근 시간 - 분 : ");
-    scanf("%d",&p->in_minute);
-
-    printf("퇴근 시간 - 시 : ");
-    scanf("%d",&p->out_hour);
-
-    printf("퇴근 시간 - 분 : ");
-    scanf("%d",&p->out_minute);
-
-    printf("총 휴게 시간 - 시 : ");
-    scanf("%d",&p->rest_hour);
-
-    printf("총 휴게 시간 - 분 : ");
-    scanf("%d",&p->rest_minute);
-    
-    printf("==> 추가됨\n"); 
-    return 1;
-}
-
-// 함수 구현 임의로
-void readProduct(Employee *p){
-    printf("%-10s 출근시간: %4d:%d, 퇴근시간: %4d:%d\n",p->name,p->in_hour,p->in_minute, p->out_hour, p->out_minute);
-}
-
-// 함수 구현 임의로
-int updateProduct(Employee *p){
-
-
-    return 1;
-};
-
-// 함수 구현 임의로
-int deleteProduct(Employee *p){
-    p->month=-1;
-    p->month=-1;
-    printf("==> 삭제됨!\n");
-    return 0;
-}
-
-// 함수 구현 임의로
-void listProduct(Employee *p,int count){
-
-}
-
-int selectDataNo(Employee *p, int count){
-    int no;
-    listProduct(p,count);                       // -
-    printf("고르려는 번호는 (취소: 0)?");
-    scanf("%d",&no);
-    getchar();
-    return no;
-}
-
-//배열데이터를 파일에 저장하는 함수
-// 함수 구현 임의로
-void saveData(Employee p[], int count){
-    
-}
-
-//파일에서 데이터 불러오는 함수
-// 함수 구현 임의로
-int loadData(Employee *p){
-    
-    return 0;
 }
 
 
