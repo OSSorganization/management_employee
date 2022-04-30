@@ -26,8 +26,8 @@ void calculateDailyWage(Employee *e, int count);
 int create_emp(Employee *a);
 
 int create_emp(Employee *a){
-    char name[100];
-    char date[100];
+    char name[100] ;
+    char date[100] ;
 
     printf("날짜입력 ex) 7월5일 -> 7/5\n");
     printf("날짜: ");
@@ -298,4 +298,3 @@ int main(void){
 	printf("\n종료됨!\n");
    	return 0;
 }
-
