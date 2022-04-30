@@ -28,11 +28,29 @@ int create_emp(Employee *a){
 
 void read_emp(Employee a){
 
-    printf("%d월%d일\n", a.month, a.day);
+    printf("\n%d월%d일\n", a.month, a.day);
     printf("이름: %s\n", a.name);
-    printf("출근시간:%d시%d분\n", a.in_hour, a.in_minute);
-    printf("퇴근시간:%d시%d분\n", a.out_hour, a.out_minute);
-    printf("휴식시간:%d시%d분\n", a.rest_hour, a.rest_minute);
+    printf("출근시간: %d시%d분\n", a.in_hour, a.in_minute);
+    printf("퇴근시간: %d시%d분\n", a.out_hour, a.out_minute);
+    printf("휴식시간: %d시%d분\n", a.rest_hour, a.rest_minute);
+
+}
+
+void list_emp(Employee* a, int index){
+    for(int i=0; i<index; i++){
+        printf("%d번\n, i+1");
+        read_emp(a[i]);
+        printf("\n");
+    }
+}
+
+void update_emp(Employee* a, int index){
+    int select;
+    list_emp(a, index)
+    printf("번호는? ");
+    scanf("%d", &select);
+    
+
 
 }
 
