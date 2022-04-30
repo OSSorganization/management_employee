@@ -10,30 +10,39 @@ typedef struct{
 
 int create_emp(Employee *a){
     char name[100] ;
-    char date[100] ;
 
-    printf("ë‚ ì§œì…ë ¥ ex) 7ì›”5ì¼ -> 7/5\n");
-    printf("ë‚ ì§œ: ");
+    printf("³¯Â¥ÀÔ·Â ex) 7¿ù5ÀÏ -> 7/5\n");
+    printf("³¯Â¥: ");
     scanf("%d/%d", &a->month, &a->day);
-    printf("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ");
+    printf("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
     scanf("%s", a->name);
-    printf("ì‹œê°„ì€ 24ì‹œ ê¸°ì¤€ ì˜ˆ) 19:15\n");
-    printf("\n ì¶œê·¼ì‹œê°„: ");
+    printf("\n");
+    printf("½Ã°£Àº 24½Ã ±âÁØ ¿¹) 19:15\n");
+    printf("Ãâ±Ù½Ã°£: ");
     scanf("%d:%d", &a->in_hour, &a->in_minute);
-    printf("í‡´ê·¼ì‹œê°„: ");
+    printf("Åğ±Ù½Ã°£: ");
     scanf("%d:%d", &a->out_hour, &a->out_minute);
-    printf("íœ´ì‹ì‹œê°„: ");
+    printf("ÈŞ½Ä½Ã°£: ");
     scanf("%d:%d", &a->rest_hour, &a->rest_minute);
+}
+
+void read_emp(Employee a){
+
+    printf("%d¿ù%dÀÏ\n", a.month, a.day);
+    printf("ÀÌ¸§: %s\n", a.name);
+    printf("Ãâ±Ù½Ã°£:%d½Ã%dºĞ\n", a.in_hour, a.in_minute);
+    printf("Åğ±Ù½Ã°£:%d½Ã%dºĞ\n", a.out_hour, a.out_minute);
+    printf("ÈŞ½Ä½Ã°£:%d½Ã%dºĞ\n", a.rest_hour, a.rest_minute);
+
 }
 
 int main(){
     Employee a;
 
     create_emp(&a);
-    printf("ì´ë¦„: %s\n", a.name);
-    printf("%dì›”%dì¼\n", a.month, a.day);
-    printf("ì¶œê·¼:%dì‹œ%dë¶„\n", a.in_hour, a.in_minute);
-    printf("í‡´ê·¼:%dì‹œ%dë¶„\n", a.out_hour, a.out_minute);
-    printf("íœ´ì‹:%dì‹œ%dë¶„\n", a.rest_hour, a.rest_minute);
+    read_emp(a);
+    
+
+
 
 }
