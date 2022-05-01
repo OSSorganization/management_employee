@@ -10,11 +10,11 @@ typedef struct{
     int rest_hour, rest_minute;
 } Employee;
 
-int createProduct(Employee *a);            
-void readProduct(Employee a);             
-void updateProduct(Employee *a);           
-int deleteProduct(Employee *a);             
-void listProduct(Employee *a,int count);    
+int createEmployee(Employee *a);            
+void readEmployee(Employee a);             
+void updateEmployee(Employee *a);           
+int deleteEmployee(Employee *a);             
+void listEmployee(Employee *a,int count);    
 void saveData(Employee *a, int count);
 int loadData(Employee *a);
 int selectMenu();
@@ -25,7 +25,7 @@ void searchTime(Employee *e, int count);
 void calculateDailyWage(Employee *e, int count);
 
 
-int createProduct(Employee *a){
+int createEmployee(Employee *a){
     char name[100] ;
 
     printf("날짜입력 ex) 7월5일 -> 7/5\n");
@@ -45,7 +45,7 @@ int createProduct(Employee *a){
     return 1;
 }
 
-void readProduct(Employee a){
+void readEmployee(Employee a){
 
     printf("\n%d월%d일\n", a.month, a.day);
     printf("이름: %s\n", a.name);
@@ -55,24 +55,24 @@ void readProduct(Employee a){
 
 }
 
-void listProduct(Employee* a, int count){
+void listEmployee(Employee* a, int count){
     for(int i=0; i<count; i++){
         if(a[i].month ==0) continue;
         printf("%d번\n", i+1);
-        readProduct(a[i]);
+        readEmployee(a[i]);
         printf("\n");
     }
 }
 
 int selectDataNo(Employee* a, int count){
     int no =0;
-    listProduct(a, count);
+    listEmployee(a, count);
     printf("번호는? (취소:0)");
     scanf("%d", &no);
     return no;
 }
 
-void updateProduct(Employee* a){
+void updateEmployee(Employee* a){
 
     printf("날짜입력 ex) 7월5일 -> 7/5\n");
     printf("날짜: ");
@@ -90,8 +90,10 @@ void updateProduct(Employee* a){
     
 }
 
-int deleteProduct(Employee *a){
+int deleteEmployee(Employee *a){
     a->month = 0;
+
+    return 1;
 }
 
 void saveData(Employee *a, int count){
@@ -168,7 +170,7 @@ void searchTime(Employee *e, int count){
     for(int i = 0; i<count; i++){
         if(e[i].month == -1) continue;
         if(strstr(e[i].name, search)){
-            readProduct(e[i]);
+            readEmployee(e[i]);
             scnt++;
         }
     }
@@ -267,10 +269,10 @@ int main(void){
 			}
 		}
 
-        if(menu == 1) listProduct(elist,curcount);
+        if(menu == 1) listEmployee(elist,curcount);
                    
         else if (menu == 2) {
-            count+=createProduct(&elist[curcount++]);           // -
+            count+=createEmployee(&elist[curcount++]);           // -
         }
 
         else if (menu == 3) {
@@ -279,7 +281,7 @@ int main(void){
                 printf("=>취소됨!");
                 continue;
             }
-            updateProduct(&elist[no-1]);                        // -
+            updateEmployee(&elist[no-1]);                        // -
         }
         else if (menu == 4) {
             int no=selectDataNo(elist, curcount);
@@ -291,7 +293,7 @@ int main(void){
             printf("정말로 삭제하시겠습니까?(삭제:1)");
             scanf("%d",&deleteok);
             if(deleteok == 1){
-                if(deleteProduct(&elist[no-1])) count --;       // -  
+                if(deleteEmployee(&elist[no-1])) count --;       // -  
            	 } 
         }
 	    else if (menu == 5){
