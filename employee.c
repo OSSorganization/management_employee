@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Á÷¿ø ÇÑ ¸í¿¡ ´ëÇÑ ÀÌ¸§, ÃâÅğ±Ù, ÈŞ°Ô ½Ã°£ µ¥ÀÌÅÍ ÀúÀåÇÒ ±¸Á¶Ã¼ Á¤ÀÇ
+// ì§ì› í•œ ëª…ì— ëŒ€í•œ ì´ë¦„, ì¶œí‡´ê·¼, íœ´ê²Œ ì‹œê°„ ë°ì´í„° ì €ì¥í•  êµ¬ì¡°ì²´ ì •ì˜
 typedef struct{ 
     char name[100];
     int month, day;
@@ -10,11 +10,11 @@ typedef struct{
     int rest_hour, rest_minute;
 } Employee;
 
-int createProduct(Employee *a);            
-void readProduct(Employee a);             
-void updateProduct(Employee *a);           
-int deleteProduct(Employee *a);             
-void listProduct(Employee *a,int count);    
+int createEmployee(Employee *a);            
+void readEmployee(Employee a);             
+void updateEmployee(Employee *a);           
+int deleteEmployee(Employee *a);             
+void listEmployee(Employee *a,int count);    
 void saveData(Employee *a, int count);
 int loadData(Employee *a);
 int selectMenu();
@@ -25,73 +25,75 @@ void searchTime(Employee *e, int count);
 void calculateDailyWage(Employee *e, int count);
 
 
-int createProduct(Employee *a){
+int createEmployee(Employee *a){
     char name[100] ;
 
-    printf("³¯Â¥ÀÔ·Â ex) 7¿ù5ÀÏ -> 7/5\n");
-    printf("³¯Â¥: ");
+    printf("ë‚ ì§œì…ë ¥ ex) 7ì›”5ì¼ -> 7/5\n");
+    printf("ë‚ ì§œ: ");
     scanf("%d/%d", &a->month, &a->day);
-    printf("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+    printf("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ");
     scanf("%s", a->name);
     printf("\n");
-    printf("½Ã°£Àº 24½Ã ±âÁØ ¿¹) 19:15\n");
-    printf("Ãâ±Ù½Ã°£: ");
+    printf("ì‹œê°„ì€ 24ì‹œ ê¸°ì¤€ ì˜ˆ) 19:15\n");
+    printf("ì¶œê·¼ì‹œê°„(6ì‹œ~10ì‹œê¹Œì§€): ");
     scanf("%d:%d", &a->in_hour, &a->in_minute);
-    printf("Åğ±Ù½Ã°£: ");
+    printf("í‡´ê·¼ì‹œê°„(17ì‹œ~21ì‹œê¹Œì§€): ");
     scanf("%d:%d", &a->out_hour, &a->out_minute);
-    printf("ÈŞ½Ä½Ã°£: ");
+    printf("íœ´ì‹ì‹œê°„(10ë¶„->00:10): ");
     scanf("%d:%d", &a->rest_hour, &a->rest_minute);
 
     return 1;
 }
 
-void readProduct(Employee a){
+void readEmployee(Employee a){
 
-    printf("\n%d¿ù%dÀÏ\n", a.month, a.day);
-    printf("ÀÌ¸§: %s\n", a.name);
-    printf("Ãâ±Ù½Ã°£: %d½Ã%dºĞ\n", a.in_hour, a.in_minute);
-    printf("Åğ±Ù½Ã°£: %d½Ã%dºĞ\n", a.out_hour, a.out_minute);
-    printf("ÈŞ½Ä½Ã°£: %d½Ã%dºĞ\n", a.rest_hour, a.rest_minute);
+    printf("\n%dì›”%dì¼\n", a.month, a.day);
+    printf("ì´ë¦„: %s\n", a.name);
+    printf("ì¶œê·¼ì‹œê°„: %dì‹œ%dë¶„\n", a.in_hour, a.in_minute);
+    printf("í‡´ê·¼ì‹œê°„: %dì‹œ%dë¶„\n", a.out_hour, a.out_minute);
+    printf("íœ´ì‹ì‹œê°„: %dì‹œ%dë¶„\n", a.rest_hour, a.rest_minute);
 
 }
 
-void listProduct(Employee* a, int count){
+void listEmployee(Employee* a, int count){
     for(int i=0; i<count; i++){
         if(a[i].month ==0) continue;
-        printf("%d¹ø\n", i+1);
-        readProduct(a[i]);
+        printf("%dë²ˆ\n", i+1);
+        readEmployee(a[i]);
         printf("\n");
     }
 }
 
 int selectDataNo(Employee* a, int count){
     int no =0;
-    listProduct(a, count);
-    printf("¹øÈ£´Â? (Ãë¼Ò:0)");
+    listEmployee(a, count);
+    printf("ë²ˆí˜¸ëŠ”? (ì·¨ì†Œ:0)");
     scanf("%d", &no);
     return no;
 }
 
-void updateProduct(Employee* a){
+void updateEmployee(Employee* a){
 
-    printf("³¯Â¥ÀÔ·Â ex) 7¿ù5ÀÏ -> 7/5\n");
-    printf("³¯Â¥: ");
+    printf("ë‚ ì§œì…ë ¥ ex) 7ì›”5ì¼ -> 7/5\n");
+    printf("ë‚ ì§œ: ");
     scanf("%d/%d", &a->month, &a->day);
-    printf("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+    printf("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ");
     scanf("%s", a->name);
     printf("\n");
-    printf("½Ã°£Àº 24½Ã ±âÁØ ¿¹) 19:15\n");
-    printf("Ãâ±Ù½Ã°£: ");
+    printf("ì‹œê°„ì€ 24ì‹œ ê¸°ì¤€ ì˜ˆ) 19:15\n");
+    printf("ì¶œê·¼ì‹œê°„(6ì‹œ~10ì‹œê¹Œì§€): ");
     scanf("%d:%d", &a->in_hour, &a->in_minute);
-    printf("Åğ±Ù½Ã°£: ");
+    printf("í‡´ê·¼ì‹œê°„(17ì‹œ~21ì‹œê¹Œì§€): ");
     scanf("%d:%d", &a->out_hour, &a->out_minute);
-    printf("ÈŞ½Ä½Ã°£: ");
+    printf("íœ´ì‹ì‹œê°„(10ë¶„->00:10): ");
     scanf("%d:%d", &a->rest_hour, &a->rest_minute);
     
 }
 
-int deleteProduct(Employee *a){
+int deleteEmployee(Employee *a){
     a->month = 0;
+
+    return 1;
 }
 
 void saveData(Employee *a, int count){
@@ -108,7 +110,7 @@ void saveData(Employee *a, int count){
     }
 
     fclose(fp);
-    printf("ÀúÀåµÊ\n");
+    printf("ì €ì¥ë¨\n");
 }
 
 int loadData(Employee *a){
@@ -118,7 +120,7 @@ int loadData(Employee *a){
     fp = fopen("employee.txt", "rt");
 
     if(fp == NULL){
-        printf("ÆÄÀÏ ¾øÀ½\n");
+        printf("íŒŒì¼ ì—†ìŒ\n");
         return count;
     }
 
@@ -132,7 +134,7 @@ int loadData(Employee *a){
         count++;
     }
     fclose(fp);
-    printf("·Îµù ¼º°ø!\n");
+    printf("ë¡œë”© ì„±ê³µ!\n");
     return count;
 
 }
@@ -143,8 +145,8 @@ void calculateDailyWage(Employee *e, int count){
     int wage;
     int working_time;
 
-    printf("ÀÏ±ŞÀ» °Ë»öÇÒ Á÷¿øÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
-    printf("\t(ÀÏ±ŞÀº ÃÖÀú½Ã±ŞÀ¸·Î °è»êµË´Ï´Ù. ÇöÀç ÃÖÀú½Ã±Ş: 9,160¿ø)\n");
+    printf("ì¼ê¸‰ì„ ê²€ìƒ‰í•  ì§ì›ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” : ");
+    printf("\t(ì¼ê¸‰ì€ ìµœì €ì‹œê¸‰ìœ¼ë¡œ ê³„ì‚°ë©ë‹ˆë‹¤. í˜„ì¬ ìµœì €ì‹œê¸‰: 9,160ì›)\n");
     scanf("%s", search);
 
     for(int i = 0; i<count; i++){
@@ -153,7 +155,7 @@ void calculateDailyWage(Employee *e, int count){
             working_time = ((e[i].out_hour*60 + e[i].out_minute) - (e[i].in_hour * 60 + e[i].in_minute)) - (e[i].rest_hour*60 + e[i].rest_minute);
             working_time /= 60;
             wage = 9160 * (working_time);
-            printf("Á÷¿ø %sÀÇ %d¿ù %dÀÏÀÇ ÇÏ·ç ÀÓ±İÀº %d¿ø ÀÔ´Ï´Ù.\n",e[i].name, e[i].month, e[i].day, wage);
+            printf("ì§ì› %sì˜ %dì›” %dì¼ì˜ í•˜ë£¨ ì„ê¸ˆì€ %dì› ì…ë‹ˆë‹¤.\n",e[i].name, e[i].month, e[i].day, wage);
         }
     }
 }
@@ -162,32 +164,32 @@ void searchTime(Employee *e, int count){
     int scnt = 0;
     char search[20];
 
-    printf("ÃâÅğ±Ù ½Ã°£ÀÌ ¾ğÁ¦ÀÎÁö °Ë»öÇÒ Á÷¿øÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
+    printf("ì¶œí‡´ê·¼ ì‹œê°„ì´ ì–¸ì œì¸ì§€ ê²€ìƒ‰í•  ì§ì›ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” : ");
     scanf("%s", search);
 
     for(int i = 0; i<count; i++){
         if(e[i].month == -1) continue;
         if(strstr(e[i].name, search)){
-            readProduct(e[i]);
+            readEmployee(e[i]);
             scnt++;
         }
     }
     if(scnt == 0)
-    printf("=> °Ë»öµÈ µ¥ÀÌÅÍ ¾øÀ½! \n");
+    printf("=> ê²€ìƒ‰ëœ ë°ì´í„° ì—†ìŒ! \n");
 }
 
 void showInTime(Employee *e, int count){
-    printf("---- Ãâ±Ù ½Ã°£ ½Ã°£º° Åë°è ----\n");
-    printf(" (¿ÀÀü 6~7½Ã, 7~8½Ã, 8~9½Ã, 9~10½Ã·Î ³ª´©¾î¼­ °á°ú º¸¿©ÁÜ)\n");
+    printf("---- ì¶œê·¼ ì‹œê°„ ì‹œê°„ë³„ í†µê³„ ----\n");
+    printf(" (ì˜¤ì „ 6~7ì‹œ, 7~8ì‹œ, 8~9ì‹œ, 9~10ì‹œë¡œ ë‚˜ëˆ„ì–´ì„œ ê²°ê³¼ ë³´ì—¬ì¤Œ)\n");
     char mark = '*';
-    for (int time = 6; time <= 9; time++){ // 6½ÃºÎÅÍ 10½Ã±îÁö ÇÑ½Ã°£ °£°İÀ¸·Î Ãâ±ÙÇÑ »ç¶÷µé µ¥ÀÌÅÍ Ãâ·Â
+    for (int time = 6; time <= 9; time++){ // 6ì‹œë¶€í„° 10ì‹œê¹Œì§€ í•œì‹œê°„ ê°„ê²©ìœ¼ë¡œ ì¶œê·¼í•œ ì‚¬ëŒë“¤ ë°ì´í„° ì¶œë ¥
         int cnt = 0;
         for(int i=0; i<count; i++){
             if( e[i].in_hour == time){
                 cnt++;
             }
         }
-        printf("[ ¿ÀÀü %d½Ã ~ %d½Ã ]¿¡ Ãâ±ÙÇÑ »ç¶÷ ¼ö : %d\n  ", time, time+1, cnt);
+        printf("[ ì˜¤ì „ %dì‹œ ~ %dì‹œ ]ì— ì¶œê·¼í•œ ì‚¬ëŒ ìˆ˜ : %d\n  ", time, time+1, cnt);
         for(int i = 0; i < cnt; i++)
             printf("%c", mark);
         printf("\n\t:");
@@ -202,17 +204,17 @@ void showInTime(Employee *e, int count){
 }
 
 void showOutTime(Employee *e, int count){
-    printf("---- Åğ±Ù ½Ã°£ ½Ã°£º° Åë°è ----\n");
-    printf(" (¿ÀÈÄ 5~6½Ã, 6~7½Ã, 7~8½Ã, 8½Ã~9½Ã·Î ³ª´©¾î¼­ °á°ú º¸¿©ÁÜ)\n");
+    printf("---- í‡´ê·¼ ì‹œê°„ ì‹œê°„ë³„ í†µê³„ ----\n");
+    printf(" (ì˜¤í›„ 5~6ì‹œ, 6~7ì‹œ, 7~8ì‹œ, 8ì‹œ~9ì‹œë¡œ ë‚˜ëˆ„ì–´ì„œ ê²°ê³¼ ë³´ì—¬ì¤Œ)\n");
     char mark = '*';
-    for (int time = 5; time <= 8; time++){ // 5½ÃºÎÅÍ 9½Ã±îÁö ÇÑ½Ã°£ °£°İÀ¸·Î Ãâ±ÙÇÑ »ç¶÷µé µ¥ÀÌÅÍ Ãâ·Â
+    for (int time = 5; time <= 8; time++){ // 5ì‹œë¶€í„° 9ì‹œê¹Œì§€ í•œì‹œê°„ ê°„ê²©ìœ¼ë¡œ ì¶œê·¼í•œ ì‚¬ëŒë“¤ ë°ì´í„° ì¶œë ¥
         int cnt = 0;
         for(int i=0; i<count; i++){
-            if( e[i].out_hour-12 == time){ // 18½Ã´Â ¿ÀÈÄ 6½ÃÀÓ(18-12 = 6)
+            if( e[i].out_hour-12 == time){ // 18ì‹œëŠ” ì˜¤í›„ 6ì‹œì„(18-12 = 6)
                 cnt++;
             }
         }
-        printf("[ ¿ÀÈÄ %d½Ã ~ %d½Ã ]¿¡ Åğ±ÙÇÑ »ç¶÷ ¼ö : %d\n  ", time, time+1, cnt);
+        printf("[ ì˜¤í›„ %dì‹œ ~ %dì‹œ ]ì— í‡´ê·¼í•œ ì‚¬ëŒ ìˆ˜ : %d\n  ", time, time+1, cnt);
         for(int i = 0; i < cnt; i++)
             printf("%c", mark);
         printf("\n\t:");
@@ -228,27 +230,27 @@ void showOutTime(Employee *e, int count){
 
 int selectMenu(){
     int menu;
-    printf("\n*** Á÷¿øµé ÃâÅğ±Ù °ü¸® ½Ã½ºÅÛ ***\n");
-    printf("============  ¸Ş ´º  ===========\n\n");
-    printf("1. µî·ÏµÈ Á÷¿ø ÃâÅğ±Ù Á¤º¸ Á¶È¸\n");
-    printf("2. Á÷¿ø ÃâÅğ±Ù Á¤º¸ Ãß°¡\n");
-    printf("3. Á÷¿ø ÃâÅğ±Ù Á¤º¸ ¼öÁ¤\n");
-    printf("4. Á÷¿ø ÃâÅğ±Ù Á¤º¸ »èÁ¦\n");
-    printf("5. µî·ÏµÈ Á÷¿ø ÃâÅğ±Ù Á¤º¸ ÀúÀå\n");
-    printf("6. Ãâ±Ù ½Ã°£ ½Ã°£º° Åë°è\n");
-    printf("7. Åğ±Ù ½Ã°£ ½Ã°£º° Åë°è\n");
-    printf("8. Á÷¿ø ÃâÅğ±Ù ½Ã°£ °Ë»ö\n");
-    printf("9. Á÷¿ø ÀÏ±Ş °è»ê\n");
-    printf("0. ÇÁ·Î±×·¥ Á¾·á\n\n");
+    printf("\n*** ì§ì›ë“¤ ì¶œí‡´ê·¼ ê´€ë¦¬ ì‹œìŠ¤í…œ ***\n");
+    printf("============  ë©” ë‰´  ===========\n\n");
+    printf("1. ë“±ë¡ëœ ì§ì› ì¶œí‡´ê·¼ ì •ë³´ ì¡°íšŒ\n");
+    printf("2. ì§ì› ì¶œí‡´ê·¼ ì •ë³´ ì¶”ê°€\n");
+    printf("3. ì§ì› ì¶œí‡´ê·¼ ì •ë³´ ìˆ˜ì •\n");
+    printf("4. ì§ì› ì¶œí‡´ê·¼ ì •ë³´ ì‚­ì œ\n");
+    printf("5. ë“±ë¡ëœ ì§ì› ì¶œí‡´ê·¼ ì •ë³´ ì €ì¥\n");
+    printf("6. ì¶œê·¼ ì‹œê°„ ì‹œê°„ë³„ í†µê³„\n");
+    printf("7. í‡´ê·¼ ì‹œê°„ ì‹œê°„ë³„ í†µê³„\n");
+    printf("8. ì§ì› ì¶œí‡´ê·¼ ì‹œê°„ ê²€ìƒ‰\n");
+    printf("9. ì§ì› ì¼ê¸‰ ê³„ì‚°\n");
+    printf("0. í”„ë¡œê·¸ë¨ ì¢…ë£Œ\n\n");
     printf("\n================================\n");
-    printf("=> ¿øÇÏ´Â ¸Ş´º´Â? ");
+    printf("=> ì›í•˜ëŠ” ë©”ë‰´ëŠ”? ");
     scanf("%d", &menu);
     return menu;
 }
 
 
 int main(void){
-    Employee elist[100];                    // 100¸íÀÇ Á÷¿ø °ü¸®
+    Employee elist[100];                    // 100ëª…ì˜ ì§ì› ê´€ë¦¬
     int curcount=0;
     int count = 0, menu;
     
@@ -262,60 +264,60 @@ int main(void){
 
         if(menu == 1 || menu ==3 || menu == 4){	
 		    if (count==0){ 
-                printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+                printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 			    continue;
 			}
 		}
 
-        if(menu == 1) listProduct(elist,curcount);
+        if(menu == 1) listEmployee(elist,curcount);
                    
         else if (menu == 2) {
-            count+=createProduct(&elist[curcount++]);           // -
+            count+=createEmployee(&elist[curcount++]);           // -
         }
 
         else if (menu == 3) {
             int no=selectDataNo(elist, curcount);
             if(no==0){
-                printf("=>Ãë¼ÒµÊ!");
+                printf("=>ì·¨ì†Œë¨!");
                 continue;
             }
-            updateProduct(&elist[no-1]);                        // -
+            updateEmployee(&elist[no-1]);                        // -
         }
         else if (menu == 4) {
             int no=selectDataNo(elist, curcount);
             if(no==0){
-                printf("=>Ãë¼ÒµÊ!");
+                printf("=>ì·¨ì†Œë¨!");
                 continue;
             }
             int deleteok;
-            printf("Á¤¸»·Î »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?(»èÁ¦:1)");
+            printf("ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?(ì‚­ì œ:1)");
             scanf("%d",&deleteok);
             if(deleteok == 1){
-                if(deleteProduct(&elist[no-1])) count --;       // -  
+                if(deleteEmployee(&elist[no-1])) count --;       // -  
            	 } 
         }
 	    else if (menu == 5){
-		    if (count==0) printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+		    if (count==0) printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		    else saveData(elist,curcount);
 	    }
         else if (menu == 6){
-		    if (count==0) printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+		    if (count==0) printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		    else showInTime(elist,curcount);
 	    }
         else if (menu == 7){
-		    if (count==0) printf("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+		    if (count==0) printf("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		    else showOutTime(elist,curcount);
 	    }
         else if (menu == 8){
-		    if (count==0) printf("µ¥ÀÌÅÍ°¡ ¾ø¾î °Ë»öÇÒ ¼ö ¾ø½À´Ï´Ù.\n");
+		    if (count==0) printf("ë°ì´í„°ê°€ ì—†ì–´ ê²€ìƒ‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
 		    else searchTime(elist,curcount);
 	    }
         else if (menu == 9){
-		    if (count==0) printf("µ¥ÀÌÅÍ°¡ ¾ø¾î °Ë»öÇÒ ¼ö ¾ø½À´Ï´Ù.\n");
+		    if (count==0) printf("ë°ì´í„°ê°€ ì—†ì–´ ê²€ìƒ‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
 		    else calculateDailyWage(elist,curcount);
 	    }
 	}
 
-	printf("\nÁ¾·áµÊ!\n");
+	printf("\nì¢…ë£Œë¨!\n");
    	return 0;
 }
