@@ -34,7 +34,7 @@ int createEmployee(Employee *a){
     printf("이름을 입력하세요: ");
     scanf("%s", a->name);
     printf("\n");
-    printf("시간은 24시 기준 예) 19:15\n");
+    printf("시간은 24시 기준으로 입력 ex)오후 7시-> 19:00\n");
     printf("출근시간(6시~10시까지): ");
     scanf("%d:%d", &a->in_hour, &a->in_minute);
     printf("퇴근시간(17시~21시까지): ");
@@ -80,7 +80,7 @@ void updateEmployee(Employee* a){
     printf("이름을 입력하세요: ");
     scanf("%s", a->name);
     printf("\n");
-    printf("시간은 24시 기준 예) 19:15\n");
+    printf("시간은 24시 기준으로 입력 ex)오후 7시 -> 19:00\n");
     printf("출근시간(6시~10시까지): ");
     scanf("%d:%d", &a->in_hour, &a->in_minute);
     printf("퇴근시간(17시~21시까지): ");
