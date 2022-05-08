@@ -181,7 +181,7 @@ void searchTime(Employee *e, int count){
 }
 
 void showInTime(Employee *e, int count){
-    printf("---- 출근 시간 시간별 통계 ----\n");
+    printf("\n---- 출근 시간 시간별 통계 ----\n");
     printf(" (오전 6~7시, 7~8시, 8~9시, 9~10시로 나누어서 결과 보여줌)\n");
     char mark = '*';
     for (int time = 6; time <= 9; time++){ // 6시부터 10시까지 한시간 간격으로 출근한 사람들 데이터 출력
@@ -208,7 +208,7 @@ void showInTime(Employee *e, int count){
 }
 
 void showOutTime(Employee *e, int count){
-    printf("---- 퇴근 시간 시간별 통계 ----\n");
+    printf("\n---- 퇴근 시간 시간별 통계 ----\n");
     printf(" (오후 5~6시, 6~7시, 7~8시, 8시~9시로 나누어서 결과 보여줌)\n");
     char mark = '*';
     for (int time = 5; time <= 8; time++){ // 5시부터 9시까지 한시간 간격으로 출근한 사람들 데이터 출력
@@ -239,7 +239,7 @@ void showInTime_date(Employee *e, int count){
     printf("어느 날짜의 출근 시간 통계를 보고싶은지 날짜 입력 ( ex) 7월5일 -> 7/5 ): ");
     scanf("%d/%d", &month, &day);
 
-    printf("---- %d월 %d일 출근 시간 시간별 통계 ----\n", month, day);
+    printf("\n---- %d월 %d일 출근 시간 시간별 통계 ----\n", month, day);
     printf(" (오전 6~7시, 7~8시, 8~9시, 9~10시로 나누어서 결과 보여줌)\n");
     char mark = '*';
     for (int time = 6; time <= 9; time++){ // 6시부터 10시까지 한시간 간격으로 출근한 사람들 데이터 출력
@@ -274,7 +274,7 @@ void showOutTime_date(Employee *e, int count){
     printf("어느 날짜의 퇴근 시간 통계를 보고싶은지 날짜 입력 ( ex) 7월5일 -> 7/5 ): ");
     scanf("%d/%d", &month, &day);
 
-    printf("---- %d월 %d일 퇴근 시간 시간별 통계 ----\n", month, day);
+    printf("\n---- %d월 %d일 퇴근 시간 시간별 통계 ----\n", month, day);
     printf(" (오후 5~6시, 6~7시, 7~8시, 8시~9시로 나누어서 결과 보여줌)\n");
     char mark = '*';
     for (int time = 5; time <= 8; time++){ // 5시부터 9시까지 한시간 간격으로 출근한 사람들 데이터 출력
