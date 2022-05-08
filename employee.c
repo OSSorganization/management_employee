@@ -150,7 +150,7 @@ void calculateDailyWage(Employee *e, int count){
     scanf("%s", search);
 
     for(int i = 0; i<count; i++){
-        if(e[i].month == -1) continue;
+        if(e[i].month == 0) continue;
         if(strstr(e[i].name, search)){
             working_time = ((e[i].out_hour*60 + e[i].out_minute) - (e[i].in_hour * 60 + e[i].in_minute)) - (e[i].rest_hour*60 + e[i].rest_minute);
             working_time /= 60;
@@ -168,7 +168,7 @@ void searchTime(Employee *e, int count){
     scanf("%s", search);
 
     for(int i = 0; i<count; i++){
-        if(e[i].month == -1) continue;
+        if(e[i].month == 0) continue;
         if(strstr(e[i].name, search)){
             readEmployee(e[i]);
             scnt++;
@@ -185,6 +185,7 @@ void showInTime(Employee *e, int count){
     for (int time = 6; time <= 9; time++){ // 6시부터 10시까지 한시간 간격으로 출근한 사람들 데이터 출력
         int cnt = 0;
         for(int i=0; i<count; i++){
+            if( e[i].month ==0 ) continue;
             if( e[i].in_hour == time){
                 cnt++;
             }
@@ -194,6 +195,7 @@ void showInTime(Employee *e, int count){
             printf("%c", mark);
         printf("\n\t:");
         for(int i=0; i<count; i++){
+            if( e[i].month ==0 ) continue;
             if( e[i].in_hour == time){
                 printf("%s ",e[i].name);
             }
@@ -210,6 +212,7 @@ void showOutTime(Employee *e, int count){
     for (int time = 5; time <= 8; time++){ // 5시부터 9시까지 한시간 간격으로 출근한 사람들 데이터 출력
         int cnt = 0;
         for(int i=0; i<count; i++){
+            if( e[i].month ==0 ) continue;
             if( e[i].out_hour-12 == time){ // 18시는 오후 6시임(18-12 = 6)
                 cnt++;
             }
@@ -219,6 +222,7 @@ void showOutTime(Employee *e, int count){
             printf("%c", mark);
         printf("\n\t:");
         for(int i=0; i<count; i++){
+            if( e[i].month ==0 ) continue;
             if( e[i].out_hour-12 == time){
                 printf("%s ",e[i].name);
             }
@@ -272,7 +276,7 @@ int main(void){
         if(menu == 1) listEmployee(elist,curcount);
                    
         else if (menu == 2) {
-            count+=createEmployee(&elist[curcount++]);           // -
+            count+=createEmployee(&elist[curcount++]);
         }
 
         else if (menu == 3) {
@@ -281,7 +285,7 @@ int main(void){
                 printf("=>취소됨!");
                 continue;
             }
-            updateEmployee(&elist[no-1]);                        // -
+            updateEmployee(&elist[no-1]);                 
         }
         else if (menu == 4) {
             int no=selectDataNo(elist, curcount);
@@ -293,28 +297,28 @@ int main(void){
             printf("정말로 삭제하시겠습니까?(삭제:1)");
             scanf("%d",&deleteok);
             if(deleteok == 1){
-                if(deleteEmployee(&elist[no-1])) count --;       // -  
-           	 } 
+                if(deleteEmployee(&elist[no-1])) count --;
+           	} 
         }
 	    else if (menu == 5){
 		    if (count==0) printf("데이터가 없습니다.\n");
-		    else saveData(elist,count);
+		    else saveData(elist,curcount);
 	    }
         else if (menu == 6){
 		    if (count==0) printf("데이터가 없습니다.\n");
-		    else showInTime(elist,count);
+		    else showInTime(elist,curcount);
 	    }
         else if (menu == 7){
 		    if (count==0) printf("데이터가 없습니다.\n");
-		    else showOutTime(elist,count);
+		    else showOutTime(elist,curcount);
 	    }
         else if (menu == 8){
 		    if (count==0) printf("데이터가 없어 검색할 수 없습니다.\n");
-		    else searchTime(elist,count);
+		    else searchTime(elist,curcount);
 	    }
         else if (menu == 9){
 		    if (count==0) printf("데이터가 없어 검색할 수 없습니다.\n");
-		    else calculateDailyWage(elist,count);
+		    else calculateDailyWage(elist,curcount);
 	    }
 	}
 
