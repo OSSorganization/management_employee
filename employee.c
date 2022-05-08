@@ -236,7 +236,7 @@ void showOutTime(Employee *e, int count){
 
 void showInTime_date(Employee *e, int count){
     int month, day;
-    printf("어느 날짜의 출근 시간 통계를 보고싶은지 날짜 입력 ( ex) 7월5일 -> 7/5 ): \n");
+    printf("어느 날짜의 출근 시간 통계를 보고싶은지 날짜 입력 ( ex) 7월5일 -> 7/5 ): ");
     scanf("%d/%d", &month, &day);
 
     printf("---- %d월 %d일 출근 시간 시간별 통계 ----\n", month, day);
