@@ -219,7 +219,7 @@ void showOutTime(Employee *e, int count){
             printf("%c", mark);
         printf("\n\t:");
         for(int i=0; i<count; i++){
-            if( e[i].out_hour == time){
+            if( e[i].out_hour-12 == time){
                 printf("%s ",e[i].name);
             }
         }
@@ -298,23 +298,23 @@ int main(void){
         }
 	    else if (menu == 5){
 		    if (count==0) printf("데이터가 없습니다.\n");
-		    else saveData(elist,curcount);
+		    else saveData(elist,count);
 	    }
         else if (menu == 6){
 		    if (count==0) printf("데이터가 없습니다.\n");
-		    else showInTime(elist,curcount);
+		    else showInTime(elist,count);
 	    }
         else if (menu == 7){
 		    if (count==0) printf("데이터가 없습니다.\n");
-		    else showOutTime(elist,curcount);
+		    else showOutTime(elist,count);
 	    }
         else if (menu == 8){
 		    if (count==0) printf("데이터가 없어 검색할 수 없습니다.\n");
-		    else searchTime(elist,curcount);
+		    else searchTime(elist,count);
 	    }
         else if (menu == 9){
 		    if (count==0) printf("데이터가 없어 검색할 수 없습니다.\n");
-		    else calculateDailyWage(elist,curcount);
+		    else calculateDailyWage(elist,count);
 	    }
 	}
 
